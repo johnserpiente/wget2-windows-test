@@ -43,6 +43,13 @@ jobs:
         run: |
           chmod +x "${GITHUB_WORKSPACE}/build.sh"
           "${GITHUB_WORKSPACE}/build.sh"
+      - name: Install UPX
+        uses: crazy-max/ghaction-upx@v3
+        with:
+          install-only: true
+      - name: build
+        run: |
+          upx --best --lzma wget2.exe
       - name: Archive wget2.exe
         uses: actions/upload-artifact@v5
         with:
